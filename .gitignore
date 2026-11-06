@@ -1,0 +1,14 @@
+/build/
+/release/
+/smoke-data/
+/smoke-output/
+*.exe
+*.dll
+*.zip
+*.pdb
+google-client*.json
+client_secret*.json
+*token*.dat*
+board.json*
+*.log
+.env*
