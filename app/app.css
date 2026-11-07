@@ -35,3 +35,16 @@ dialog{border:1px solid #fff8;border-radius:22px;background:#fcfaf5;color:#28392
 .reminder-note-link{border:0;background:transparent;text-align:left;color:#344d3a;text-decoration:underline;overflow-wrap:anywhere}
 .reminder-list-row span{font-size:12px;color:#777e6c}
 @media(max-width:700px){.reminder-controls{grid-template-columns:1fr;gap:9px}.reminder-list-row{grid-template-columns:1fr}.note .reminder-open{left:23px}}
+
+/* v1.3: open the full note */
+.expand{position:absolute;right:28px;top:3px;width:23px;height:23px;border:0;border-radius:50%;background:#fff4;color:#4a5146;font-size:13px;line-height:23px;opacity:0;z-index:5;cursor:pointer}
+.expand,.note:focus-within .expand{opacity:.75}
+.note:hover .expand{opacity:1}
+#modal-content .detail{background:var(--paper);border-radius:6px;padding:22px 26px 18px;box-shadow:0 10px 30px #3b2f1c33;clear:both}
+#modal-content .detail .eyebrow{margin:0 0 6px;color:#5d5a46}
+#modal-content .detail textarea,#modal-content .detail input{background:transparent;border:0;color:#2f2b22;width:100%;resize:none;outline:none}
+#modal-content .detail-title{font:400 30px Caveat,'Segoe Print',cursive;line-height:1.15;margin-bottom:8px}
+#modal-content .detail-todo{font:20px/1.55 Caveat,'Segoe Print',cursive;min-height:46vh;resize:vertical!important;white-space:pre-wrap}
+#modal-content .detail-meta{display:flex;gap:14px;align-items:center;border-top:1px dashed #0002;padding-top:10px;margin-top:8px;font:14px Segoe UI,sans-serif}
+#modal-content .detail-meta input{width:auto;font:15px Segoe UI,sans-serif}
+#modal-content .detail-meta small{margin-left:auto;color:#6c6650}

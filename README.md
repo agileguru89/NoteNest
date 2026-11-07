@@ -25,6 +25,13 @@ Requires Windows 10/11 **x64**, .NET Framework 4.8 and Microsoft Edge WebView2
 Runtime. The installer is currently **unsigned**; Windows may show a publisher
 warning. No Python server, AI model, paid server or subscription is required.
 
+## Add notes from other tools
+
+Scripts, automations and AI assistants can pin notes to your board through a local
+inbox folder or `NoteNest.exe --add-note note.json`. Click **⤢** on any note to read
+and edit it in a large view. See [docs/INBOX.md](docs/INBOX.md); an optional Claude
+Code skill lives in [integrations/claude-skill](integrations/claude-skill/not-al/SKILL.md).
+
 ## Your board
 
 - Four rooms: classic cork, light linen, evening felt and sage garden.

@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.3.0 — 2026-11-08
+
+- Inbox: notes dropped as JSON into `%LOCALAPPDATA%\NoteNest\inbox` appear on the open board (or at next start).
+- `NoteNest.exe --add-note <file.json>` queues notes without opening a second window.
+- New ⤢ button opens a note in a large, readable and editable detail view.
+- Optional Claude Code skill in `integrations/claude-skill/not-al/`; format documented in `docs/INBOX.md`.
+- Existing boards, reminders and Google Sheets sync are unchanged.
+
 ## 1.2.0 — 2026-11-07
 
 - Soft ding-dong is now the default reminder, including upgrades from v1.1.
