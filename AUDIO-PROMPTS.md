@@ -30,3 +30,9 @@ Both selected MP3 files are 1.28 seconds (38,484 bytes).
 Generation records report 59.994 credits total across the four takes,
 approximately USD 0.010908; this is the tool's estimate, not an account invoice.
 Paid-plan generation was authorized by the owner. Separate media terms apply.
+
+## v1.2 sound selection
+
+The owner selected all five auditions as optional sounds and retained both original Huhu clips. The existing soft two-note chime is the new default (UI label: Ding-dong). No new generation was run for v1.2.
+New MP3 assets reuse the five approved audition previews: 45% amplitude, 35 ms fade-in, 44.1 kHz MP3. Original Huhu clips retain their existing files.
+Audition flow VKSqs0NIO4XCBKI6Wqum; female Rae WQfV3AbwBvtoJeK7QJz3 and male Joseph klfRFkxouVP3bt55Whp3. Speech prompts: [friendly] Hey. and [warmly] Mm-hm. Model eleven_v4. Chime: eleven_text_to_sound_v2. Source generation IDs in order: XLyynFv8kMLoJGM82qFe, hB7iOGiePJg8aDZQ9ryK, llWU5bgFND5htFZoFeMA, n4txk0ukt84VrUGrrCjX, 3M8mxPOLLXwvrqzFcGDS.

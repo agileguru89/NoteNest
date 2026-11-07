@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.2.0 — 2026-11-07
+
+- Soft ding-dong is now the default reminder, including upgrades from v1.1.
+- Seven previewable sounds: chime and female/male Hey!, Mm-hm!, Huhu.
+- Original Huhu recordings remain optional; existing notes and reminders are kept.
+- All recordings are bundled locally; no new generation or runtime API charges.
+
 ## 1.1.0 — 2026-11-07
 
 - Per-note reminder date/time through a small clock control.

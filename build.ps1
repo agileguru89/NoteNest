@@ -24,7 +24,7 @@ Copy-Item -LiteralPath (Join-Path $noteTask 'app\assets\OFL-Caveat.txt') -Destin
 Copy-Item -LiteralPath (Join-Path $noteTask 'LICENSE'),(Join-Path $noteTask 'ASSETS-LICENSE.md') -Destination $noteRelease -Force
 Add-Type -AssemblyName System.IO.Compression
 Add-Type -AssemblyName System.IO.Compression.FileSystem
-$notePayload = Join-Path $noteTask 'NoteNest-1.1.0-Windows.zip'
+$notePayload = Join-Path $noteTask 'NoteNest-1.2.0-Windows.zip'
 $notePayloadStream = [IO.File]::Open($notePayload,[IO.FileMode]::Create)
 $notePayloadArchive = New-Object IO.Compression.ZipArchive($notePayloadStream,[IO.Compression.ZipArchiveMode]::Create)
 try{Get-ChildItem -LiteralPath $noteRelease -Recurse -File | ForEach-Object { $noteEntry=$_.FullName.Substring($noteRelease.Length+1).Replace('\','/'); if($noteEntry -match 'google-client|token|board\.json'){throw 'Private data in release'}; [IO.Compression.ZipFileExtensions]::CreateEntryFromFile($notePayloadArchive,$_.FullName,$noteEntry,[IO.Compression.CompressionLevel]::Optimal)|Out-Null }}finally{$notePayloadArchive.Dispose();$notePayloadStream.Dispose()}

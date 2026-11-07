@@ -3,11 +3,11 @@ const NoteReminders=(()=>{
   const R=ReminderModel;
   let ready=false,checking=false,activeAudio=null,latestDue=[],timer=null,pausedForSave=false;
   function volume(){const v=store.settings.reminderVolume;return typeof v==='number'&&Number.isFinite(v)?M.clamp(v,0,1):.3;}
-  function voice(){return store.settings.reminderVoice==='male'?'male':'female';}
+  function sound(){return R.SOUNDS[R.soundKey(store.settings)].file;}
   async function play(preview=false){
     if(!preview&&(store.settings.muted||store.settings.remindersMuted||volume()===0))return;
     if(activeAudio){activeAudio.pause();activeAudio=null;}
-    const a=new Audio('assets/reminder-'+voice()+'.mp3');a.volume=volume();activeAudio=a;
+    const a=new Audio('assets/'+sound());a.volume=volume();activeAudio=a;
     let played=false;try{await a.play();played=true;}catch{if(preview)toast('Sound could not play. Check your audio output.');}
     a.onended=()=>{if(activeAudio===a)activeAudio=null;};return played;
   }
@@ -59,7 +59,7 @@ const NoteReminders=(()=>{
     const local=n.reminderAt?R.toLocal(n.reminderAt):n.due?n.due+'T09:00':R.toLocal(Date.now()+600000);
     modal('<p class="eyebrow">A gentle nudge</p><h1>A little reminder.</h1><p>'+esc(n.title||'Your note')+'</p>'+
       '<label class="reminder-label" for="reminder-at">Remind me on</label><input id="reminder-at" class="reminder-datetime" type="datetime-local" value="'+esc(local)+'">'+
-      '<p class="small muted">Your computer’s local time. NoteNest must be open. One soft “huhu”, with no repeating alarm. Date-only notes do not make a sound.</p>'+
+      '<p class="small muted">Your computer’s local time. NoteNest must be open. One gentle sound, with no repeating alarm. Date-only notes do not make a sound.</p>'+
       '<div class="actions"><button class="primary" id="reminder-save">Save reminder</button><button class="secondary" id="reminder-clear">Remove reminder</button><button class="secondary" id="reminder-options">Sound settings</button></div>'+
       '<p id="reminder-error" class="reminder-error" role="status"></p>');
     $('#reminder-save').onclick=async()=>{
@@ -77,23 +77,23 @@ const NoteReminders=(()=>{
   }
   function showSettings(){
     const scheduled=store.notes.filter(n=>!n.completed&&n.reminderAt).sort((a,b)=>R.instant(R.key(a))-R.instant(R.key(b)));
-    modal('<p class="eyebrow">Quietly, at the right time</p><h1>A friendly “huhu”.</h1>'+
-      '<p>Pick a gentle voice. Reminders run only while NoteNest is open, including when minimized. Missed reminders appear once when you next open it.</p>'+
-      '<div class="reminder-controls"><label for="reminder-voice">Voice</label><select id="reminder-voice"><option value="female">Female · soft and friendly</option><option value="male">Male · soft and friendly</option></select>'+
+    modal('<p class="eyebrow">Quietly, at the right time</p><h1>A sound that feels right.</h1>'+
+      '<p>Ding-dong is the default. Choose any of the seven sounds and preview it. Reminders run only while NoteNest is open, including when minimized. Missed reminders appear once when you next open it.</p>'+
+      '<div class="reminder-controls"><label for="reminder-sound">Sound</label><select id="reminder-sound">'+Object.entries(R.SOUNDS).map(([key,s])=>'<option value="'+key+'">'+esc(s.label)+'</option>').join('')+'</select>'+
       '<label for="reminder-volume">Volume <span id="reminder-volume-value">'+Math.round(volume()*100)+'%</span></label><input id="reminder-volume" type="range" min="0" max="100" step="5" value="'+Math.round(volume()*100)+'">'+
       '<label class="reminder-mute"><input id="reminders-muted" type="checkbox" '+(store.settings.remindersMuted?'checked':'')+'> Silent reminders (visual only)</label></div>'+
-      '<div class="actions"><button class="secondary" id="reminder-preview">Preview “huhu”</button><button class="primary" id="reminder-settings-done">Back to my board</button></div>'+
-      '<p class="small muted">The main ♪ mute also silences reminders. Preview plays the selected voice at this volume. No audio is generated online when a reminder plays.</p>'+
+      '<div class="actions"><button class="secondary" id="reminder-preview">Preview sound</button><button class="primary" id="reminder-settings-done">Back to my board</button></div>'+
+      '<p class="small muted">The main ♪ mute also silences reminders. Preview plays the selected sound at this volume. No audio is generated online when a reminder plays.</p>'+
       '<h2>Your reminders</h2>'+(!scheduled.length?'<p>Use the small clock on a note to add its date and time.</p>':scheduled.map(n=>'<div class="reminder-list-row"><button class="reminder-note-link" data-reminder-edit="'+esc(n.id)+'">'+esc(n.title||'Your note')+'</button><span>'+esc(stamp(R.key(n)))+(n.reminderDismissedFor===R.key(n)?' · dismissed':'')+'</span></div>').join('')));
-    $('#reminder-voice').value=voice();
-    $('#reminder-voice').onchange=e=>{store.settings.reminderVoice=e.target.value;changed(false);};
+    $('#reminder-sound').value=R.soundKey(store.settings);
+    $('#reminder-sound').onchange=e=>{if(activeAudio){activeAudio.pause();activeAudio=null;}store.settings.reminderSound=e.target.value;changed(false);};
     $('#reminder-volume').oninput=e=>{store.settings.reminderVolume=Number(e.target.value)/100;$('#reminder-volume-value').textContent=e.target.value+'%';changed(false);};
     $('#reminders-muted').onchange=e=>{store.settings.remindersMuted=e.target.checked;changed(false);};
     $('#reminder-preview').onclick=()=>play(true);$('#reminder-settings-done').onclick=()=>$('#modal').close();
     document.querySelectorAll('[data-reminder-edit]').forEach(b=>b.onclick=()=>showNote(b.dataset.reminderEdit));
   }
   function init(){
-    if(ready)return;
+    if(ready)return;const chosen=R.soundKey(store.settings);if(store.settings.reminderSound!==chosen){store.settings.reminderSound=chosen;changed(false);}
     $('#tools').insertAdjacentHTML('beforeend','<button id="reminder-settings" title="Reminders" aria-label="Reminders">◷</button>');
     $('#reminder-settings').onclick=showSettings;
     $('#room').insertAdjacentHTML('beforeend','<aside id="reminder-banner" aria-label="Note reminder" role="status" hidden><span class="reminder-kicker">A little nudge</span><strong id="reminder-title"></strong><small id="reminder-summary"></small><div><button id="reminder-view">View note</button><button id="reminder-snooze">10 min later</button><button id="reminder-dismiss">Dismiss</button></div></aside>');

@@ -28,3 +28,5 @@ assert.equal(R.fromLocal('invalid'),'');assert.equal(R.fromLocal('2026-02-30T12:
 const local='2026-11-07T15:30';assert.equal(R.toLocal(R.fromLocal(local)),local,'Local time must round-trip');
 assert.equal(R.instant('2026-11-07T15:00:00+03:00'),t,'Time zone offsets resolve to the same instant');
 console.log('PASS: reminder boundary, local/UTC conversion, old notes, restart deduplication, snooze, dismiss, completion, grouped notifications');
+
+assert.equal(Object.keys(R.SOUNDS).length,7);assert.equal(R.soundKey({}),'chime');assert.equal(R.soundKey({reminderVoice:'male'}),'chime');assert.equal(R.soundKey({reminderSound:'unknown'}),'chime');for(const key of Object.keys(R.SOUNDS))assert.equal(R.soundKey({reminderSound:key}),key);assert.equal(new Set(Object.values(R.SOUNDS).map(s=>s.file)).size,7);console.log('PASS: seven sound choices, chime default, legacy settings migration and invalid-choice fallback');

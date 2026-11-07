@@ -40,9 +40,10 @@ The screenshot contains synthetic demonstration notes, not user data.
 
 ## Gentle reminders
 
-Use the small clock on a note to choose a **local date and time**. A short
-female “huhu” is the default; the clock in the toolbar offers a male option,
-volume, audio preview and visual-only mode. The main sound mute also silences
+Use the small clock on a note to choose a **local date and time**. A soft **ding-dong** is the default. The toolbar clock offers seven sounds:
+ding-dong, female/male “Hey!”, female/male “Mm-hm!” and the original
+female/male “Huhu”. Volume, audio preview and visual-only mode are available.
+Older voice-only preferences start with ding-dong when first upgraded. The main sound mute also silences
 reminders.
 
 NoteNest must be open, including minimized. A soft card identifies the note;

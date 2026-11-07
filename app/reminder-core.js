@@ -1,5 +1,8 @@
 (function(root){
 'use strict';
+const SOUNDS=Object.freeze({"chime":{"label":"Ding-dong · soft chime (default)","file":"reminder-chime.mp3"},"hey-female":{"label":"Hey! · female","file":"reminder-hey-female.mp3"},"hey-male":{"label":"Hey! · male","file":"reminder-hey-male.mp3"},"mmhm-female":{"label":"Mm-hm! · female","file":"reminder-mmhm-female.mp3"},"mmhm-male":{"label":"Mm-hm! · male","file":"reminder-mmhm-male.mp3"},"huhu-female":{"label":"Huhu · female (original)","file":"reminder-female.mp3"},"huhu-male":{"label":"Huhu · male (original)","file":"reminder-male.mp3"}});
+function soundKey(settings={}){return Object.prototype.hasOwnProperty.call(SOUNDS,settings?.reminderSound)?settings.reminderSound:'chime';}
+
 function instant(value){return typeof value==='string'&&value.trim()?Date.parse(value):NaN;}
 function key(note){return Number.isFinite(instant(note.reminderSnoozedUntil))?note.reminderSnoozedUntil:note.reminderAt||'';}
 function due(notes,time){
@@ -22,6 +25,6 @@ function fromLocal(value){
   const d=new Date(value);
   return Number.isFinite(d.getTime())&&toLocal(d)===value?d.toISOString():'';
 }
-const api={instant,key,due,fresh,mark,dismiss,snooze,toLocal,fromLocal};
+const api={SOUNDS,soundKey,instant,key,due,fresh,mark,dismiss,snooze,toLocal,fromLocal};
 if(typeof module==='object')module.exports=api;else root.ReminderModel=api;
 })(typeof globalThis!=='undefined'?globalThis:this);
