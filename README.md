@@ -37,6 +37,26 @@ warning. No Python server, AI model, paid server or subscription is required.
 
 The screenshot contains synthetic demonstration notes, not user data.
 
+
+## Gentle reminders
+
+Use the small clock on a note to choose a **local date and time**. A short
+female “huhu” is the default; the clock in the toolbar offers a male option,
+volume, audio preview and visual-only mode. The main sound mute also silences
+reminders.
+
+NoteNest must be open, including minimized. A soft card identifies the note;
+View note returns to it, 10 min later snoozes it, and Dismiss stops that nudge.
+Completed or blank notes never alert. Multiple notes arriving together make
+one sound. Delivered reminders are recorded locally before playback so they
+do not repeat on every check or restart. Missed reminders appear once when
+the app next opens; closing the app disables reminders until you reopen it.
+Sleep/suspend can delay a reminder until the computer resumes.
+
+Reminder instants and reminder preferences stay in the local board and its
+exported backup; the Google Sheet retains its existing date-only due column.
+Existing v1.0 notes gain no reminder unless you explicitly set one.
+
 ## Optional Google Sheets archive
 
 **Public builds work offline immediately. Google sync requires your own Desktop
@@ -68,6 +88,7 @@ On Windows with .NET Framework 4.8 and WebView2 Runtime:
 powershell -ExecutionPolicy Bypass -File .\setup-deps.ps1
 powershell -ExecutionPolicy Bypass -File .\build.ps1
 node test-model.cjs
+node test-reminders.cjs
 .\release\NoteNest.exe --selftest
 ```
 

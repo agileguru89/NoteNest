@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.1.0 — 2026-11-07
+
+- Per-note reminder date/time through a small clock control.
+- Soft female/male “huhu”, volume, preview and silent mode.
+- One grouped nudge, ten-minute snooze and dismissal.
+- Persistent delivery markers; completed/blank notes do not alert.
+- Native reminder ticks while minimized; no background service when closed.
+- Existing local notes and the date-only Google Sheets archive remain compatible.
+
 ## 1.0.0 — 2026-11-06
 
 First public Windows x64 release.
