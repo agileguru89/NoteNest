@@ -48,3 +48,5 @@ dialog{border:1px solid #fff8;border-radius:22px;background:#fcfaf5;color:#28392
 #modal-content .detail-meta{display:flex;gap:14px;align-items:center;border-top:1px dashed #0002;padding-top:10px;margin-top:8px;font:14px Segoe UI,sans-serif}
 #modal-content .detail-meta input{width:auto;font:15px Segoe UI,sans-serif}
 #modal-content .detail-meta small{margin-left:auto;color:#6c6650}
+#tools select{height:26px;max-width:160px;border:0;background:none;color:#3d423b;border-radius:13px;padding:0 6px;cursor:pointer}#tools select:hover{background:#0000000b}#tools select.active{background:#bb965633;font-weight:600}
+dialog button.danger{background:#a8463b;color:#fff;border:0;border-radius:999px;padding:9px 16px;cursor:pointer}dialog button.danger:hover{background:#8f3a30}.cat-actions{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end;align-items:center}.archive-row .confirm,.actions .confirm{display:flex;gap:6px;align-items:center;flex-wrap:wrap;color:#7a2e25;font-weight:600}.archive-row>button.danger{margin-left:6px}

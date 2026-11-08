@@ -37,7 +37,8 @@ One note or a list of up to 50 notes (UTF-8):
     "todo": "Send the revised offer by Friday.\n\n• new prices\n• timeline\n• contact person",
     "category": "Sales",
     "paper": "rose",
-    "due": "2026-11-14"
+    "due": "2026-11-14",
+    "reminderAt": "2026-11-14T09:00"
   }
 ]
 ```
@@ -46,9 +47,10 @@ One note or a list of up to 50 notes (UTF-8):
 |---|---|---|
 | `title` | one of title/todo | max 180 characters, shown large on the paper |
 | `todo` | one of title/todo | max 12,000 characters; line breaks are kept. Open the full text with **⤢** on the note |
-| `category` | no | max 80 characters |
+| `category` | no | max 80 characters; matched to an existing category regardless of case/spaces |
 | `paper` | no | `butter` (yellow, default), `rose` (pink), `mint` (green), `lined` (tall white) |
 | `due` | no | `YYYY-MM-DD`; anything else is ignored |
+| `reminderAt` | no | reminder time: local `YYYY-MM-DDTHH:mm`, or ISO 8601 with `Z`/offset; anything else is ignored |
 
 Position, fastener and rotation are chosen automatically so new notes do not cover existing ones.
 
