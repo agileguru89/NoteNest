@@ -1,5 +1,11 @@
 # NoteNest — next development phase
 
+## Done in 1.4 (8 November 2026)
+
+- Category tabs in the Google Sheets archive (views of the Notes tab; backup copy before first use), category suggestions with case-insensitive matching, a board category filter and `reminderAt` in inbox notes.
+
+## Ideas
+
 Recorded 6 November 2026 from the owner’s instructions. These are future ideas, not implemented features or permission to integrate third-party services now.
 
 - An elegant living home study with a gently animated fireplace.

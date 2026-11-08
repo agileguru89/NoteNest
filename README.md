@@ -41,6 +41,9 @@ Code skill lives in [integrations/claude-skill](integrations/claude-skill/not-al
 - Matching-colour crumpling and basket toss: five hits, then one miss.
   Both archive the note; undo puts it back.
 - Mute and reduced-motion support.
+- Category suggestions (case-insensitive) and a toolbar filter to show one category.
+- Manage categories: clear a category or delete its notes (undo for ten seconds; a local
+  copy is kept in `deleted-notes.json`).
 
 The screenshot contains synthetic demonstration notes, not user data.
 
@@ -74,6 +77,12 @@ included. See [Google setup](docs/GOOGLE-SETUP.md).
 Notes save locally first. With Google connected, edits queue while offline.
 The app creates **NoteNest — Task Archive** in your Drive; newest notes first.
 Open rows are green, completed rows grey; updates use the same note ID.
+Every category also gets its own tab, a copy of its `Notes` rows refreshed after each sync
+(notes without one go to `Uncategorized`); a backup copy of the spreadsheet is
+made before these tabs are first created. Each category tab has its own colour, like an
+agenda divider. Rows stay one line tall; hover a To do cell
+for the full text, or pick a note in the **Note view** tab to read it in a large card.
+
 Sheets is an archive, not a two-way board editor. Unchanged rows you manually
 delete are not recreated by routine sync; a subsequent note edit may recreate
 a record. Sync runs while the app is open. The archive stops safely near its
